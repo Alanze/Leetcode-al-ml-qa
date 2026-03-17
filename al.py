@@ -33,36 +33,6 @@ class MultiHeadAttention(nn.Module):
         output = self.out_linear(attn_output)
         
         return output
-    
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-    
-    def __repr__(self):
-        vals = []
-        node = self
-        while node:
-            vals.append(str(node.val))
-            node = node.next
-        return "->".join(vals)
-    
-    @staticmethod
-    # 删除链表中的重复的节点
-    def delete_node(head):
-        if not head:
-            return None
-        curr = head
-        print("Original List:", curr)
-        while curr and curr.next:
-            if curr.val == curr.next.val:
-                curr.next = curr.next.next
-                print("after deletion curr:", curr)
-                print("after deletion curr.next:", curr.next)
-                print("after deletion List:", head)
-            else:
-                curr = curr.next
-        return head
 
 if __name__ == "__main__":
     # 测试多头注意力机制
@@ -77,9 +47,6 @@ if __name__ == "__main__":
     value = torch.rand(batch_size, seq_length, d_model)
     
     output = attention(query, key, value)
+    print(output)
     print("Multi-Head Attention Output Shape:", output.shape)
-    # 测试链表节点删除
-    head = ListNode(1, ListNode(2, ListNode(2, ListNode(2, ListNode(3)))))
-    print("Original List:", head)
-    new_head = ListNode.delete_node(head)
-    print("List after deleting duplicates:", new_head)
+
