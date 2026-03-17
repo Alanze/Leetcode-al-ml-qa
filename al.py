@@ -53,9 +53,13 @@ class ListNode:
         if not head:
             return None
         curr = head
+        print("Original List:", curr)
         while curr and curr.next:
             if curr.val == curr.next.val:
                 curr.next = curr.next.next
+                print("after deletion curr:", curr)
+                print("after deletion curr.next:", curr.next)
+                print("after deletion List:", head)
             else:
                 curr = curr.next
         return head
